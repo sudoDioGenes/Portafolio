@@ -1,201 +1,417 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Portafolio Académico | Diógenes Serrano</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Portafolio Académico | Diógenes Serrano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue */
+            --secondary-color: #3498db; /* Bright Blue */
+            --background-color: #ecf0f1; /* Light Gray */
+            --text-color: #333;
+            --light-text: #f0f0f0;
+            --panel-bg: #fff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        header, nav, main, footer, section {
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: var(--secondary-color);
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            transition: background-color 0.3s, border-radius 0.3s;
+            font-weight: 600;
+            margin: 0.2rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: #2980b9; /* Slightly darker secondary color */
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background-color: var(--panel-bg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+        }
+
+        /* Reflection Panel */
+        .panel-outline {
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        /* Skills Section */
+        .habilidades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .bloque {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .bloque:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bloque h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        .bloque ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bloque li {
+            padding: 0.25rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Projects Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        td a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        td a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        footer p {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            nav {
+                justify-content: space-around;
+            }
+            nav a {
+                flex-grow: 1;
+                text-align: center;
+                padding: 0.5rem 0.5rem;
+                font-size: 0.9rem;
+            }
+            main {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            section {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .habilidades {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Diógenes Serrano</h1>
-  <p>Portafolio Académico · Ingeniería Electromecánica</p>
+    <h1>Diógenes Serrano</h1>
+    <p>Portafolio Académico · Ingeniería Electromecánica</p>
 </header>
 
 <nav>
-  <a href="#intro">Introducción</a>
-  <a href="#perfil">Perfil</a>
-  <a href="#curso">Asignatura</a>
-  <a href="#trabajos">Proyectos</a>
-  <a href="#habilidades">Habilidades</a>
-  <a href="#contacto">Contacto</a>
-  <a href="#reflexion">REFLEXIÓN FINAL</a>
-  
+    <a href="#intro">Introducción</a>
+    <a href="#perfil">Perfil</a>
+    <a href="#curso">Asignatura</a>
+    <a href="#trabajos">Proyectos</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#reflexion">REFLEXIÓN FINAL</a>
 </nav>
-<section id="reflexion" class="panel panel-outline">
-  <h2>07 · REFLEXIÓN FINAL</h2>
-  <p>
-    La asignatura de Desarrollo Lógico y Algorítmico reforzó competencias esenciales para
-    mi formación en ingeniería electromecánica, especialmente el pensamiento analítico y la
-    estructuración de soluciones eficientes.
-  </p>
-  <p>
-    Este curso me permitió comprender la importancia de la lógica y los algoritmos en el diseño,
-    operación y diagnóstico de sistemas electromecánicos. Su aporte académico y técnico constituye
-    una base sólida para mi desempeño profesional futuro.
-  </p>
-</section>
-  
+
 <main>
 
 <section id="intro">
-  <h2>Introducción</h2>
-  <p>
-    Diógenes Serrano, estudiante en Ingeniería Electromecánica.
-    La asignatura Desarrollo Lógico y Algorítmico fortaleció el razonamiento técnico,
-    la organización de ideas
-    y la toma de decisiones en la resolución de problemas.
-  </p>
+    <h2>01 · Introducción</h2>
+    <p>
+        Diógenes Serrano, estudiante en Ingeniería Electromecánica.
+        La asignatura Desarrollo Lógico y Algorítmico fortaleció el razonamiento técnico,
+        la organización de ideas
+        y la toma de decisiones en la resolución de problemas.
+    </p>
 </section>
 
 <section id="perfil">
-  <h2>Perfil Académico</h2>
-  <ul>
-    <li><strong>Nombre:</strong> Diógenes Serrano</li>
-    <li><strong>Carrera:</strong> Ingeniería Electromecánica</li>
-    <li><strong>Universidad:</strong> Universidad Tecnológica de Panamá</li>
-    <li><strong>Asignatura:</strong> Desarrollo Lógico y Algorítmico</li>
-  </ul>
+    <h2>02 · Perfil Académico</h2>
+    <ul>
+        <li><strong>Nombre:</strong> Diógenes Serrano</li>
+        <li><strong>Carrera:</strong> Ingeniería Electromecánica</li>
+        <li><strong>Universidad:</strong> Universidad Tecnológica de Panamá</li>
+        <li><strong>Asignatura:</strong> Desarrollo Lógico y Algorítmico</li>
+    </ul>
 </section>
 
 <section id="curso">
-  <h2>Descripción del Curso</h2>
-  <p>
-    Este curso desarrolla habilidades analíticas,
-    fomenta la resolución estructurada de problemas
-    y refuerza el pensamiento algorítmico.
-  </p>
+    <h2>03 · Descripción del Curso</h2>
+    <p>
+        Este curso desarrolla habilidades analíticas,
+        fomenta la resolución estructurada de problemas
+        y refuerza el pensamiento algorítmico.
+    </p>
 </section>
 
 <section id="trabajos">
-  <h2>Proyectos y Evaluaciones</h2>
+    <h2>04 · Proyectos y Evaluaciones</h2>
 
-  <table>
-    <tr>
-      <th>Trabajo</th>
-      <th>Descripción</th>
-      <th>Enlace</th>
-    </tr>
+    <table>
+        <tr>
+            <th>Trabajo</th>
+            <th>Descripción</th>
+            <th>Enlace</th>
+        </tr>
 
-    <tr>
-      <td>Ejercicio Práctico 1</td>
-      <td>Aplicación de estructuras condicionales y operaciones lógicas.</td>
-      <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Ejercicio%20practico1.pdf">Ver documento</a></td>
-    </tr>
+        <tr>
+            <td>Ejercicio Práctico 1</td>
+            <td>Aplicación de estructuras condicionales y operaciones lógicas.</td>
+            <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Ejercicio%20practico1.pdf">Ver documento</a></td>
+        </tr>
 
-    <tr>
-      <td>Ejercicio Práctico 2</td>
-      <td>Análisis de procesos técnicos básicos y organización de datos.</td>
-      <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Ejercicio_Pr%C3%A1ctico2.pdf">Ver documento</a></td>
-    </tr>
+        <tr>
+            <td>Ejercicio Práctico 2</td>
+            <td>Análisis de procesos técnicos básicos y organización de datos.</td>
+            <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Ejercicio_Pr%C3%A1ctico2.pdf">Ver documento</a></td>
+        </tr>
 
-    <tr>
-      <td>Laboratorio Práctico</td>
-      <td>Desarrollo de procedimientos técnicos y control lógico.</td>
-      <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Laboratorio%20Pr%C3%A1ctico%201.pdf">Ver documento</a></td>
-    </tr>
+        <tr>
+            <td>Laboratorio Práctico</td>
+            <td>Desarrollo de procedimientos técnicos y control lógico.</td>
+            <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Laboratorio%20Pr%C3%A1ctico%201.pdf">Ver documento</a></td>
+        </tr>
 
-    <tr>
-      <td>Taller Práctico</td>
-      <td>Resolución estructurada de problemas simulados.</td>
-      <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Taller%20Pr%C3%A1ctico1.pdf">Ver documento</a></td>
-    </tr>
+        <tr>
+            <td>Taller Práctico</td>
+            <td>Resolución estructurada de problemas simulados.</td>
+            <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Taller%20Pr%C3%A1ctico1.pdf">Ver documento</a></td>
+        </tr>
 
-    <tr>
-      <td>Parcial 1</td>
-      <td>Evaluación de lógica y teoría algorítmica aplicada.</td>
-      <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Parcial1algoritmo.pdf">Ver documento</a></td>
-    </tr>
+        <tr>
+            <td>Parcial 1</td>
+            <td>Evaluación de lógica y teoría algorítmica aplicada.</td>
+            <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Parcial1algoritmo.pdf">Ver documento</a></td>
+        </tr>
 
-    <tr>
-      <td>Parcial 2</td>
-      <td>Resolución de ejercicios técnicos con criterio lógico.</td>
-      <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Examen%20Parcial2.pdf">Ver documento</a></td>
-    </tr>
+        <tr>
+            <td>Parcial 2</td>
+            <td>Resolución de ejercicios técnicos con criterio lógico.</td>
+            <td><a target="_blank" href="https://github.com/sudoDioGenes/Portafolio/blob/main/Examen%20Parcial2.pdf">Ver documento</a></td>
+        </tr>
 
-  </table>
+    </table>
 </section>
 
 <section id="habilidades">
-  <h2>Habilidades Técnicas</h2>
+    <h2>05 · Habilidades Técnicas</h2>
 
-  <div class="habilidades">
+    <div class="habilidades">
 
-    <div class="bloque">
-      <h3>Programación</h3>
-      <ul>
-        <li>Python</li>
-        <li>Lenguaje C</li>
-        <li>Programación Lógica</li>
-        <li>Depuración</li>
-      </ul>
+        <div class="bloque">
+            <h3>Programación</h3>
+            <ul>
+                <li>Python</li>
+                <li>Lenguaje C</li>
+                <li>Programación Lógica</li>
+                <li>Depuración</li>
+            </ul>
+        </div>
+
+        <div class="bloque">
+            <h3>Aplicaciones</h3>
+            <ul>
+                <li>Tkinter</li>
+                <li>Sistemas POS</li>
+            </ul>
+        </div>
+
+        <div class="bloque">
+            <h3>Bases de Datos</h3>
+            <ul>
+                <!-- Eliminadas: MySQL y SQL, manteniendo solo las siguientes: -->
+                <li>CRUD</li>
+                <li>Inventarios</li>
+                <li>Facturación</li>
+            </ul>
+        </div>
+
+        <div class="bloque">
+            <h3>Servidores</h3>
+            <ul>
+                <li>Windows Server</li>
+                <li>Carpetas Compartidas</li>
+                <li>Administración Básica</li>
+                <li>FTP</li>
+            </ul>
+        </div>
+
+        <div class="bloque">
+            <h3>Redes</h3>
+            <ul>
+                <li>Redes LAN</li>
+                <li>Packet Tracer</li>
+                <li>Topologías</li>
+            </ul>
+        </div>
+
+        <div class="bloque">
+            <h3>Habilidades Profesionales</h3>
+            <ul>
+                <li>Pensamiento Analítico</li>
+                <li>Resolución de Problemas</li>
+                <li>Trabajo en Equipo</li>
+            </ul>
+        </div>
+
     </div>
-
-    <div class="bloque">
-      <h3>Aplicaciones</h3>
-      <ul>
-        <li>Tkinter</li>
-        <li>Sistemas POS</li>
-      </ul>
-    </div>
-
-    <div class="bloque">
-      <h3>Bases de Datos</h3>
-      <ul>
-        <li>CRUD</li>
-        <li>Inventarios</li>
-        <li>Facturación</li>
-      </ul>
-    </div>
-
-    <div class="bloque">
-      <h3>Servidores</h3>
-      <ul>
-        <li>Windows Server</li>
-        <li>Carpetas Compartidas</li>
-        <li>Administración Básica</li>
-        <li>FTP</li>
-      </ul>
-    </div>
-
-    <div class="bloque">
-      <h3>Redes</h3>
-      <ul>
-        <li>Redes LAN</li>
-        <li>Packet Tracer</li>
-        <li>Topologías</li>
-      </ul>
-    </div>
-
-    <div class="bloque">
-      <h3>Habilidades Profesionales</h3>
-      <ul>
-        <li>Pensamiento Analítico</li>
-        <li>Resolución de Problemas</li>
-        <li>Trabajo en Equipo</li>
-      </ul>
-    </div>
-
-  </div>
 </section>
 
 <section id="contacto">
-  <h2>Contacto</h2>
-  <p>
-    Correo electrónico:<br>
-    <a href="mailto:DioGithubGenes@gmail.com">DioGithubGenes@gmail.com</a>
-  </p>
+    <h2>06 · Contacto</h2>
+    <p>
+        Correo electrónico:<br>
+        <a href="mailto:DioGithubGenes@gmail.com">DioGithubGenes@gmail.com</a>
+    </p>
+</section>
+
+<section id="reflexion" class="panel-outline">
+    <h2>07 · REFLEXIÓN FINAL</h2>
+    <p>
+        La asignatura de Desarrollo Lógico y Algorítmico reforzó competencias esenciales para
+        mi formación en ingeniería electromecánica, especialmente el pensamiento analítico y la
+        estructuración de soluciones eficientes.
+    </p>
+    <p>
+        Este curso me permitió comprender la importancia de la lógica y los algoritmos en el diseño,
+        operación y diagnóstico de sistemas electromecánicos. Su aporte académico y técnico constituye
+        una base sólida para mi desempeño profesional futuro.
+    </p>
 </section>
 
 </main>
 
 <footer>
-  <p>Universidad Tecnológica de Panamá</p>
-  <p>Diógenes Serrano · 2025</p>
+    <p>Universidad Tecnológica de Panamá</p>
+    <p>Diógenes Serrano · 2025</p>
 </footer>
 
 </body>
 </html>
-
